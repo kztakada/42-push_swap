@@ -6,7 +6,7 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 17:58:09 by katakada          #+#    #+#              #
-#    Updated: 2024/10/27 23:21:12 by katakada         ###   ########.fr        #
+#    Updated: 2024/11/01 18:39:05 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJS)
 	make bonus -C $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT)libft.a $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)libft.a -o $(NAME)
 
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	mkdir -p $(@D)
@@ -43,7 +43,7 @@ bonus:	$(NAME_BONUS)
 
 $(NAME_BONUS):	$(OBJS_BONUS)
 	make bonus -C $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT)libft.a $(OBJS_BONUS) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT)libft.a -o $(NAME_BONUS)
 
 $(OBJS_BONUS_PATH)%.o : $(SRCS_BONUS_PATH)%.c
 	mkdir -p $(@D)
