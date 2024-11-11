@@ -6,11 +6,25 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 17:05:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:04:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_sorted(int *stack, size_t stack_size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < stack_size - 1)
+	{
+		if (stack[i] > stack[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -21,6 +35,10 @@ int	main(int argc, char *argv[])
 	if (!stack)
 		return (error_exit(), 1);
 	i = 0;
+	if (is_sorted(stack->a, stack->a_size))
+	{
+		ft_printf("This is already sorted.\n");
+	}
 	while (stack->a_size > i)
 	{
 		ft_printf("%d\n", stack->a[i]);
