@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/10 18:38:17 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:05:15 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char *argv[])
 	size_t	i;
 
 	stack = get_init_stack(argc, argv);
+	if (!stack)
+		return (error_exit(), 1);
 	i = 0;
 	while (stack->a_size > i)
 	{

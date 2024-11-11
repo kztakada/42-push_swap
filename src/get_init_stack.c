@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:38:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/10 19:22:25 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:53:41 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,21 @@ void	convert_push_to_stack_a(t_stack *stack, char **stack_strs)
 	}
 }
 
-char	**get_stack_strs(int argc, char **argv, size_t *stack_size)
+void	convert_space(unsigned int index, char *character)
+{
+	(void)index;
+	if ((*character >= '\t' && *character <= '\r'))
+		*character = ' ';
+}
+
+char	**get_stack_strs_and_size(int argc, char **argv, size_t *stack_size)
 {
 	char	**stack_strs;
 
 	stack_strs = NULL;
 	if (argc == 2)
 	{
+		ft_striteri(argv[1], &convert_space);
 		stack_strs = ft_split(argv[1], ' ');
 		if (!stack_strs)
 			return (error_exit(), NULL);
@@ -80,16 +88,18 @@ t_stack	*get_init_stack(int argc, char **argv)
 	if (argc < 2)
 		return (error_exit(), NULL);
 	stack_size = 0;
-	stack_strs = get_stack_strs(argc, argv, &stack_size);
+	stack_strs = get_stack_strs_and_size(argc, argv, &stack_size);
 	if (!stack_strs)
 		return (error_exit(), NULL);
+	if (!is_int_number_strs(stack_strs, stack_size))
+		return (free_strs(stack_strs, stack_size, argc), error_exit(), NULL);
 	stack = init_stack(stack_size);
 	if (!stack)
-		return (free_strs(stack_strs, argc), error_exit(), NULL);
-	if (!is_int_number_strs(stack_strs))
-		return (free_stack(stack), free_strs(stack_strs, argc), error_exit(),
-			NULL);
+		return (free_strs(stack_strs, stack_size, argc), error_exit(), NULL);
 	convert_push_to_stack_a(stack, stack_strs);
-	free_strs(stack_strs, argc);
+	if (has_duplication(stack->a, stack->a_size))
+		return (free_stack(stack), free_strs(stack_strs, stack_size, argc),
+			error_exit(), NULL);
+	free_strs(stack_strs, stack_size, argc);
 	return (stack);
 }
