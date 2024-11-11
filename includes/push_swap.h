@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 20:30:43 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:37:33 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ t_stack		*get_init_stack(int argc, char **argv);
 int			is_int_number_strs(char **stack_strs, size_t stack_size);
 int			has_duplication(int *stack, size_t stack_size);
 
+int			sort_three(t_stack *stack, t_list **operations);
+int			sort_under_six(t_stack *stack, t_list **operations);
+
+void		print_operations(t_list *operations);
+
 int			swap_a(t_stack *stack, t_list **operations);
 int			swap_b(t_stack *stack, t_list **operations);
 int			swap_ab(t_stack *stack, t_list **operations);
@@ -57,6 +62,8 @@ int			reverse_rotate_b(t_stack *stack, t_list **operations);
 int			reverse_rotate_ab(t_stack *stack, t_list **operations);
 
 int			add_back_operation(int num, t_list **operations);
+
+int			is_sorted(int *stack, size_t stack_size);
 
 void		error_exit(void);
 void		free_stack(t_stack *stack);
