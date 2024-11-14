@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 23:29:00 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 15:20:29 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:23:00 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int	sort_under_six(t_stack *stack, t_list **operations)
 				return (1);
 		}
 	}
-	if (sort_three(stack, operations))
-		return (1);
+	if (!is_sorted(stack->a, 3))
+	{
+		if (sort_three(stack, operations))
+			return (1);
+	}
 	while (stack->b_size > 0)
 	{
 		if (push_a(stack, operations))

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 16:09:16 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:31:21 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char *argv[])
 	operations = get_sentinel_operation();
 	if (!operations)
 		return (free_stack(stack), error_exit(), 1);
-	print_stack(stack);
 	if (!is_sorted(stack->a, stack->a_size))
 	{
 		if (start_sort(stack, &operations))
@@ -78,8 +77,7 @@ int	main(int argc, char *argv[])
 			return (free_stack(stack), error_exit(), 1);
 		}
 	}
-	print_stack(stack);
-	// print_operations(operations);
+	print_operations(operations);
 	free_stack(stack);
 	ft_lstclear(&operations, free);
 	return (0);

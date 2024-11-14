@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 15:31:56 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:42:16 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ int			sort_over_six(t_stack *stack, t_list **operations);
 int			sort_push_to_b(t_stack *stack, t_list **operations);
 t_min_op	get_min_op_to_side_b(t_stack *stack);
 
+t_min_op	get_min_op_to_side_a(t_stack *stack);
+
 t_min_op	get_min_op_by_index_ab(size_t index_a, size_t index_b,
 				t_stack *stack);
 int			execute_min_op(t_min_op min_op, t_stack *stack,
 				t_list **operations);
 t_min_op	init_min_op(void);
-size_t		get_index_by_b_num(int b_num, t_stack *stack);
+size_t		get_index_by_num(int num, size_t size, int *stack);
 
 void		print_operations(t_list *operations);
 
@@ -88,6 +90,7 @@ int			add_back_operation(int num, t_list **operations);
 
 int			is_sorted(int *stack, size_t stack_size);
 int			is_b_side_sorted(t_stack *stack, size_t stack_size);
+int			is_a_side_sorted(t_stack *stack, size_t stack_size);
 
 void		error_exit(void);
 void		free_stack(t_stack *stack);

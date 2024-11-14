@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:59:15 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 15:03:58 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:41:21 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_nearest_under_b(size_t index_a, t_stack *stack)
 	size_t		index_b;
 	int			b_num;
 
-	diff = (long long)INT_MAX;
+	diff = (long long)LONG_MAX;
 	index_b = 0;
 	b_num = stack->b[index_b];
 	while (stack->b_size > index_b)
@@ -36,7 +36,6 @@ int	get_nearest_under_b(size_t index_a, t_stack *stack)
 		}
 		index_b++;
 	}
-	ft_printf("gggggggggggggb_num: %d\n", b_num);
 	return (b_num);
 }
 
@@ -47,7 +46,7 @@ t_min_op	get_min_op_to_nearest_under_b(size_t index_a, t_stack *stack)
 	int			b_num;
 
 	b_num = get_nearest_under_b(index_a, stack);
-	index_b = get_index_by_b_num(b_num, stack);
+	index_b = get_index_by_num(b_num, stack->b_size, stack->b);
 	min_op = get_min_op_by_index_ab(index_a, index_b, stack);
 	return (min_op);
 }
@@ -57,7 +56,7 @@ t_min_op	get_min_op_to_b_max(size_t index_a, t_stack *stack)
 	t_min_op	min_op;
 	size_t		index_b;
 
-	index_b = get_index_by_b_num(stack->b_max, stack);
+	index_b = get_index_by_num(stack->b_max, stack->b_size, stack->b);
 	min_op = get_min_op_by_index_ab(index_a, index_b, stack);
 	return (min_op);
 }

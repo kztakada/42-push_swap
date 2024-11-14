@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:47:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 14:50:23 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:42:06 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_min_op	init_min_op(void)
 	return (min_op);
 }
 
-size_t	get_index_by_b_num(int b_num, t_stack *stack)
+size_t	get_index_by_num(int num, size_t size, int *stack)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < stack->b_size)
+	while (i < size)
 	{
-		if (stack->b[i] == b_num)
+		if (stack[i] == num)
 			return (i);
 		i++;
 	}
