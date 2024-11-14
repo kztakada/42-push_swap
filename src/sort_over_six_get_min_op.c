@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:44:26 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 14:46:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:55:17 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,24 @@ t_min_op	get_rra_rrb_operations_by_index_ab(size_t index_a, size_t index_b,
 		t_stack *stack)
 {
 	t_min_op	min_op;
+	size_t		r_index_a;
+	size_t		r_index_b;
 
 	min_op = init_min_op();
-	min_op.r_rotate_a = stack->a_size - index_a;
-	min_op.r_rotate_b = stack->b_size - index_b;
-	if (min_op.r_rotate_a > min_op.r_rotate_b)
+	r_index_a = stack->a_size - index_a;
+	r_index_b = stack->b_size - index_b;
+	if (r_index_a > r_index_b)
 	{
-		min_op.r_rotate_ab = min_op.r_rotate_b;
-		min_op.r_rotate_a -= min_op.r_rotate_b;
-		min_op.r_rotate_b = 0;
+		min_op.r_rotate_ab = r_index_b;
+		min_op.r_rotate_a = r_index_a - r_index_b;
 	}
-	else if (min_op.r_rotate_a < min_op.r_rotate_b)
+	else if (r_index_a < r_index_b)
 	{
-		min_op.r_rotate_ab = min_op.r_rotate_a;
-		min_op.r_rotate_b -= min_op.r_rotate_a;
-		min_op.r_rotate_a = 0;
+		min_op.r_rotate_ab = r_index_a;
+		min_op.r_rotate_b = r_index_b - r_index_a;
 	}
 	else
-	{
-		min_op.r_rotate_ab = min_op.r_rotate_a;
-		min_op.r_rotate_a = 0;
-		min_op.r_rotate_b = 0;
-	}
+		min_op.r_rotate_ab = r_index_a;
 	min_op.total_count = min_op.r_rotate_a + min_op.r_rotate_b
 		+ min_op.r_rotate_ab;
 	return (min_op);
