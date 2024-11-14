@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 23:37:33 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:31:56 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,38 @@ typedef struct s_stack
 	int		b_max;
 }			t_stack;
 
+typedef struct s_min_op
+{
+	size_t	rotate_a;
+	size_t	rotate_b;
+	size_t	rotate_ab;
+	size_t	r_rotate_a;
+	size_t	r_rotate_b;
+	size_t	r_rotate_ab;
+	int		total_count;
+}			t_min_op;
+
 t_stack		*get_init_stack(int argc, char **argv);
 int			is_int_number_strs(char **stack_strs, size_t stack_size);
 int			has_duplication(int *stack, size_t stack_size);
 
 int			sort_three(t_stack *stack, t_list **operations);
 int			sort_under_six(t_stack *stack, t_list **operations);
+int			sort_over_six(t_stack *stack, t_list **operations);
+
+int			sort_push_to_b(t_stack *stack, t_list **operations);
+t_min_op	get_min_op_to_side_b(t_stack *stack);
+
+t_min_op	get_min_op_by_index_ab(size_t index_a, size_t index_b,
+				t_stack *stack);
+int			execute_min_op(t_min_op min_op, t_stack *stack,
+				t_list **operations);
+t_min_op	init_min_op(void);
+size_t		get_index_by_b_num(int b_num, t_stack *stack);
 
 void		print_operations(t_list *operations);
 
+int			optimized_rotate_to_a_min(t_stack *stack, t_list **operations);
 int			swap_a(t_stack *stack, t_list **operations);
 int			swap_b(t_stack *stack, t_list **operations);
 int			swap_ab(t_stack *stack, t_list **operations);
@@ -64,9 +87,12 @@ int			reverse_rotate_ab(t_stack *stack, t_list **operations);
 int			add_back_operation(int num, t_list **operations);
 
 int			is_sorted(int *stack, size_t stack_size);
+int			is_b_side_sorted(t_stack *stack, size_t stack_size);
 
 void		error_exit(void);
 void		free_stack(t_stack *stack);
 void		free_strs(char **strs, size_t stack_size, int argc);
+
+void		print_stack(t_stack *stack);
 
 #endif

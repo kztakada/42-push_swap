@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_sort.c                                  :+:      :+:    :+:   */
+/*   sort_over_six.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 23:27:55 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 14:32:13 by katakada         ###   ########.fr       */
+/*   Created: 2024/11/14 14:25:35 by katakada          #+#    #+#             */
+/*   Updated: 2024/11/14 15:18:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(int *stack, size_t stack_size)
+int	sort_over_six(t_stack *stack, t_list **operations)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < stack_size - 1)
+	if (sort_push_to_b(stack, operations))
+		return (1);
+	if (!is_sorted(stack->a, stack->a_size))
 	{
-		if (stack[i] > stack[i + 1])
-			return (0);
-		i++;
+		if (sort_three(stack, operations))
+			return (1);
 	}
-	return (1);
-}
-
-int	is_b_side_sorted(t_stack *stack, size_t stack_size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < stack_size - 1)
-	{
-		if (stack->b[i] < stack->b[i + 1] && (stack->b[i + 1] != stack->b_max))
-			return (0);
-		i++;
-	}
-	return (1);
+	// if (sort_push_buck_to_a(stack, operations))
+	// 	return (1);
+	if (is_sorted(stack->a, stack->a_size))
+		return (0);
+	if (optimized_rotate_to_a_min(stack, operations))
+		return (1);
+	return (0);
 }

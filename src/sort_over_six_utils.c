@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_sort.c                                  :+:      :+:    :+:   */
+/*   sort_over_six_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 23:27:55 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 14:32:13 by katakada         ###   ########.fr       */
+/*   Created: 2024/11/14 14:47:42 by katakada          #+#    #+#             */
+/*   Updated: 2024/11/14 14:50:23 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(int *stack, size_t stack_size)
+t_min_op	init_min_op(void)
 {
-	size_t	i;
+	t_min_op	min_op;
 
-	i = 0;
-	while (i < stack_size - 1)
-	{
-		if (stack[i] > stack[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
+	min_op.rotate_a = 0;
+	min_op.rotate_b = 0;
+	min_op.rotate_ab = 0;
+	min_op.r_rotate_a = 0;
+	min_op.r_rotate_b = 0;
+	min_op.r_rotate_ab = 0;
+	min_op.total_count = 0;
+	return (min_op);
 }
 
-int	is_b_side_sorted(t_stack *stack, size_t stack_size)
+size_t	get_index_by_b_num(int b_num, t_stack *stack)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < stack_size - 1)
+	while (i < stack->b_size)
 	{
-		if (stack->b[i] < stack->b[i + 1] && (stack->b[i + 1] != stack->b_max))
-			return (0);
+		if (stack->b[i] == b_num)
+			return (i);
 		i++;
 	}
-	return (1);
+	return (0);
 }

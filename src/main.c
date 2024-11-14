@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/12 00:25:52 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:18:04 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_list	*get_sentinel_operation(void)
 
 	op_number = (int *)malloc(sizeof(int));
 	if (!op_number)
-		return (NULL);
+		return (error_exit(), NULL);
 	*op_number = TOP;
 	operation = ft_lstnew(op_number);
 	if (!operation)
-		return (NULL);
+		return (error_exit(), NULL);
 	return (operation);
 }
 
@@ -55,7 +55,7 @@ int	start_sort(t_stack *stack, t_list **operations)
 		return (sort_three(stack, operations));
 	if (stack->a_size >= 4 && stack->a_size <= 6)
 		return (sort_under_six(stack, operations));
-	return (0);
+	return (sort_over_six(stack, operations));
 }
 
 int	main(int argc, char *argv[])
@@ -69,7 +69,7 @@ int	main(int argc, char *argv[])
 	operations = get_sentinel_operation();
 	if (!operations)
 		return (free_stack(stack), error_exit(), 1);
-	// print_stack(stack);
+	print_stack(stack);
 	if (!is_sorted(stack->a, stack->a_size))
 	{
 		if (start_sort(stack, &operations))
@@ -78,8 +78,8 @@ int	main(int argc, char *argv[])
 			return (free_stack(stack), error_exit(), 1);
 		}
 	}
-	// print_stack(stack);
-	print_operations(operations);
+	print_stack(stack);
+	// print_operations(operations);
 	free_stack(stack);
 	ft_lstclear(&operations, free);
 	return (0);
