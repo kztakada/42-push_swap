@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 15:18:04 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:09:16 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_list	*get_sentinel_operation(void)
 
 	op_number = (int *)malloc(sizeof(int));
 	if (!op_number)
-		return (error_exit(), NULL);
+		return (exit(1), NULL);
 	*op_number = TOP;
 	operation = ft_lstnew(op_number);
 	if (!operation)
-		return (error_exit(), NULL);
+		return (exit(1), NULL);
 	return (operation);
 }
 
