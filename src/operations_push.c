@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:43:29 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 20:44:47 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/15 22:54:36 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int	push_a(t_stack *stack, t_list **operations)
 	stack->a_size++;
 	stack->b_size--;
 	set_stack_min_max(stack);
-	return (add_back_operation(PA, operations));
+	if (operations)
+		return (add_back_operation(PA, operations));
+	return (0);
 }
 
 int	push_b(t_stack *stack, t_list **operations)
@@ -87,5 +89,7 @@ int	push_b(t_stack *stack, t_list **operations)
 	stack->b_size++;
 	stack->a_size--;
 	set_stack_min_max(stack);
-	return (add_back_operation(PB, operations));
+	if (operations)
+		return (add_back_operation(PB, operations));
+	return (0);
 }

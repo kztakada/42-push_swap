@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:41:23 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 20:36:36 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/15 22:53:23 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int	swap_ab(t_stack *stack, t_list **operations)
 {
 	swap_a(stack, NULL);
 	swap_b(stack, NULL);
-	return (add_back_operation(SS, operations));
+	if (operations)
+		return (add_back_operation(SS, operations));
+	return (0);
 }

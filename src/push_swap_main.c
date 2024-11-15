@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 22:57:47 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 19:31:21 by katakada         ###   ########.fr       */
+/*   Created: 2024/11/15 23:25:52 by katakada          #+#    #+#             */
+/*   Updated: 2024/11/16 01:02:29 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	main(int argc, char *argv[])
 	t_stack	*stack;
 	t_list	*operations;
 
+	if (argc < 2)
+		return (0);
 	stack = get_init_stack(argc, argv);
 	if (!stack)
 		return (error_exit(), 1);

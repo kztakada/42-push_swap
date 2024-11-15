@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:38:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 17:53:41 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:02:12 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ t_stack	*get_init_stack(int argc, char **argv)
 	size_t	stack_size;
 	char	**stack_strs;
 
-	if (argc < 2)
-		return (error_exit(), NULL);
 	stack_size = 0;
 	stack_strs = get_stack_strs_and_size(argc, argv, &stack_size);
 	if (!stack_strs)

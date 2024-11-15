@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:43:13 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 20:36:14 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/15 22:54:54 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int	reverse_rotate_ab(t_stack *stack, t_list **operations)
 {
 	reverse_rotate_a(stack, NULL);
 	reverse_rotate_b(stack, NULL);
-	return (add_back_operation(RRR, operations));
+	if (operations)
+		return (add_back_operation(RRR, operations));
+	return (0);
 }
