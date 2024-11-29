@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:59:15 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 19:41:21 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:13:26 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_nearest_under_b(size_t index_a, t_stack *stack)
 	return (b_num);
 }
 
-t_min_op	get_min_op_to_nearest_under_b(size_t index_a, t_stack *stack)
+t_min_op	get_min_op_to_under_nearest_b(size_t index_a, t_stack *stack)
 {
 	t_min_op	min_op;
 	size_t		index_b;
@@ -54,10 +54,21 @@ t_min_op	get_min_op_to_nearest_under_b(size_t index_a, t_stack *stack)
 t_min_op	get_min_op_to_b_max(size_t index_a, t_stack *stack)
 {
 	t_min_op	min_op;
-	size_t		index_b;
+	size_t		index_b_max;
 
-	index_b = get_index_by_num(stack->b_max, stack->b_size, stack->b);
-	min_op = get_min_op_by_index_ab(index_a, index_b, stack);
+	index_b_max = get_index_by_num(stack->b_max, stack->b_size, stack->b);
+	min_op = get_min_op_by_index_ab(index_a, index_b_max, stack);
+	return (min_op);
+}
+
+t_min_op	get_optimal_min_op_to_b(t_stack *stack, size_t index_a)
+{
+	t_min_op	min_op;
+
+	if (stack->a[index_a] > stack->b_max || stack->a[index_a] < stack->b_min)
+		min_op = get_min_op_to_b_max(index_a, stack);
+	else
+		min_op = get_min_op_to_under_nearest_b(index_a, stack);
 	return (min_op);
 }
 
@@ -68,18 +79,11 @@ t_min_op	get_min_op_to_side_b(t_stack *stack)
 	t_min_op	min_op_tmp;
 
 	index_a = 0;
-	if (stack->a[index_a] > stack->b_max || stack->a[index_a] < stack->b_min)
-		min_op = get_min_op_to_b_max(index_a, stack);
-	else
-		min_op = get_min_op_to_nearest_under_b(index_a, stack);
+	min_op = get_optimal_min_op_to_b(stack, index_a);
 	index_a++;
 	while (stack->a_size > index_a)
 	{
-		if (stack->a[index_a] > stack->b_max
-			|| stack->a[index_a] < stack->b_min)
-			min_op_tmp = get_min_op_to_b_max(index_a, stack);
-		else
-			min_op_tmp = get_min_op_to_nearest_under_b(index_a, stack);
+		min_op_tmp = get_optimal_min_op_to_b(stack, index_a);
 		if (min_op.total_count > min_op_tmp.total_count)
 			min_op = min_op_tmp;
 		index_a++;

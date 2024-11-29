@@ -6,25 +6,25 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:38:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/16 01:02:12 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:37:06 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stack(size_t stack_size)
+t_stack	*get_init_stack(size_t stack_size)
 {
 	t_stack	*stack;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
-		return (error_exit(), NULL);
+		return (NULL);
 	stack->a = (int *)malloc(sizeof(int) * stack_size);
 	if (!stack->a)
-		return (free(stack), error_exit(), NULL);
+		return (free(stack), NULL);
 	stack->b = (int *)malloc(sizeof(int) * stack_size);
 	if (!stack->b)
-		return (free(stack->a), free(stack), error_exit(), NULL);
+		return (free(stack->a), free(stack), NULL);
 	stack->a_size = stack_size;
 	stack->a_min = INT_MAX;
 	stack->a_max = INT_MIN;
@@ -67,7 +67,7 @@ char	**get_stack_strs_and_size(int argc, char **argv, size_t *stack_size)
 		ft_striteri(argv[1], &convert_space);
 		stack_strs = ft_split(argv[1], ' ');
 		if (!stack_strs)
-			return (error_exit(), NULL);
+			return (NULL);
 		while (stack_strs[(*stack_size)])
 			(*stack_size)++;
 	}
@@ -79,7 +79,7 @@ char	**get_stack_strs_and_size(int argc, char **argv, size_t *stack_size)
 	return (stack_strs);
 }
 
-t_stack	*get_init_stack(int argc, char **argv)
+t_stack	*get_validated_stack(int argc, char **argv)
 {
 	t_stack	*stack;
 	size_t	stack_size;
@@ -88,16 +88,16 @@ t_stack	*get_init_stack(int argc, char **argv)
 	stack_size = 0;
 	stack_strs = get_stack_strs_and_size(argc, argv, &stack_size);
 	if (!stack_strs)
-		return (error_exit(), NULL);
+		return (NULL);
 	if (!is_int_number_strs(stack_strs, stack_size))
-		return (free_strs(stack_strs, stack_size, argc), error_exit(), NULL);
-	stack = init_stack(stack_size);
+		return (free_strs(stack_strs, stack_size, argc), NULL);
+	stack = get_init_stack(stack_size);
 	if (!stack)
-		return (free_strs(stack_strs, stack_size, argc), error_exit(), NULL);
+		return (free_strs(stack_strs, stack_size, argc), NULL);
 	convert_push_to_stack_a(stack, stack_strs);
 	if (has_duplication(stack->a, stack->a_size))
 		return (free_stack(stack), free_strs(stack_strs, stack_size, argc),
-			error_exit(), NULL);
+			NULL);
 	free_strs(stack_strs, stack_size, argc);
 	return (stack);
 }

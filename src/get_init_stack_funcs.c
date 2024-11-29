@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:55:19 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 17:55:20 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:22:15 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int	is_int_str(char *str_pos, int sign)
 	int_value = 0;
 	max_limit = (unsigned long)INT_MAX;
 	if (!ft_isdigit(*str_pos))
-		return (error_exit(), 0);
+		return (0);
 	while (ft_isdigit(*str_pos))
 	{
 		if (!ft_isdigit(*str_pos))
-			return (error_exit(), 0);
+			return (0);
 		digit_value = *str_pos - '0';
 		if (sign == 1 && int_value > ((max_limit - digit_value) / 10))
-			return (error_exit(), 0);
+			return (0);
 		if (sign == -1 && int_value > ((max_limit + 1 - digit_value) / 10))
-			return (error_exit(), 0);
+			return (0);
 		int_value = int_value * 10 + digit_value;
 		str_pos++;
 	}

@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 19:42:16 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:35:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_min_op
 	int		total_count;
 }			t_min_op;
 
-t_stack		*get_init_stack(int argc, char **argv);
+t_stack		*get_validated_stack(int argc, char **argv);
 int			is_int_number_strs(char **stack_strs, size_t stack_size);
 int			has_duplication(int *stack, size_t stack_size);
 
@@ -86,7 +86,7 @@ int			reverse_rotate_a(t_stack *stack, t_list **operations);
 int			reverse_rotate_b(t_stack *stack, t_list **operations);
 int			reverse_rotate_ab(t_stack *stack, t_list **operations);
 
-int			add_back_operation(int num, t_list **operations);
+int			add_back_operation(int op_specifier, t_list **operations);
 
 int			is_sorted(int *stack, size_t stack_size);
 int			is_b_side_sorted(t_stack *stack, size_t stack_size);

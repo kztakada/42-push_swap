@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 23:25:28 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/16 01:02:52 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:23:35 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_command(t_stack *stack, char *new_line)
 	{
 		if (!check_command_push_swap(stack, new_line))
 			if (!check_command_rotate(stack, new_line))
-				return (error_exit());
+				return (free(new_line), free_stack(stack), error_exit());
 		new_line = get_next_line(0);
 		free(cmp_line);
 		cmp_line = new_line;
@@ -73,7 +73,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		return (0);
-	stack = get_init_stack(argc, argv);
+	stack = get_validated_stack(argc, argv);
 	if (!stack)
 		return (error_exit(), 1);
 	new_line = get_next_line(0);

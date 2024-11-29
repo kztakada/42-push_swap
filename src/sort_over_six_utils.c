@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:47:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/14 19:42:06 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:21:49 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ size_t	get_index_by_num(int num, size_t size, int *stack)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (exit(1), 0);
 }
