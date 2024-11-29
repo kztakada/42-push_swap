@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 23:27:02 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/13 13:33:39 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:25:21 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	is_upper_side(int *stack, size_t stack_size, int target_num)
 {
 	size_t	i;
+	size_t	target_order;
 
 	i = 0;
 	while (i < stack_size)
@@ -23,7 +24,10 @@ int	is_upper_side(int *stack, size_t stack_size, int target_num)
 			break ;
 		i++;
 	}
-	if (i < stack_size / 2)
+	target_order = i + 1;
+	if (stack_size % 2 != 0)
+		stack_size++;
+	if (target_order <= stack_size / 2)
 		return (1);
 	else
 		return (0);
