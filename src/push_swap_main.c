@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 23:25:52 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/29 19:35:57 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:55:39 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,6 @@ t_list	*get_sentinel_operation(void)
 	if (!operation)
 		return (NULL);
 	return (operation);
-}
-
-void	print_stack(t_stack *stack)
-{
-	size_t	i;
-
-	i = 0;
-	ft_printf("A stack\n");
-	while (stack->a_size > i)
-	{
-		ft_printf("%d\n", stack->a[i]);
-		i++;
-	}
-	i = 0;
-	ft_printf("B stack\n");
-	while (stack->b_size > i)
-	{
-		ft_printf("%d\n", stack->b[i]);
-		i++;
-	}
 }
 
 int	sort_stack(t_stack *stack, t_list **operations)

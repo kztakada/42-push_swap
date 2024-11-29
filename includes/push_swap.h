@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/29 19:35:49 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:55:48 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,5 @@ int			is_a_side_sorted(t_stack *stack, size_t stack_size);
 void		error_exit(void);
 void		free_stack(t_stack *stack);
 void		free_strs(char **strs, size_t stack_size, int argc);
-
-void		print_stack(t_stack *stack);
 
 #endif
