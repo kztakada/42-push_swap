@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 19:53:14 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/30 19:55:58 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:32:42 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@ char	*strjoin_free(char *allocated_str, char *reference_str)
 	str = ft_strjoin(allocated_str, reference_str);
 	free(allocated_str);
 	return (str);
+}
+
+int	has_no_number(char *arg_str)
+{
+	int	i;
+
+	if (!arg_str)
+		return (1);
+	if (!arg_str[0])
+		return (1);
+	i = 0;
+	while (arg_str[i])
+	{
+		if (ft_isdigit(arg_str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 char	*convert_args_to_one_str(int argc, char **argv)
@@ -36,6 +54,8 @@ char	*convert_args_to_one_str(int argc, char **argv)
 	i = 2;
 	while (i < argc)
 	{
+		if (has_no_number(argv[i]))
+			return (free(one_str), NULL);
 		one_str = strjoin_free(one_str, " ");
 		if (!one_str)
 			return (NULL);
