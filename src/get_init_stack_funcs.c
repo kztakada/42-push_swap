@@ -6,13 +6,24 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:55:19 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/29 17:22:15 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:50:18 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_int_str(char *str_pos, int sign)
+int	is_all_digit_char(char *str)
+{
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int	is_int_range(char *str_pos, int sign)
 {
 	unsigned long	int_value;
 	int				digit_value;
@@ -20,12 +31,8 @@ int	is_int_str(char *str_pos, int sign)
 
 	int_value = 0;
 	max_limit = (unsigned long)INT_MAX;
-	if (!ft_isdigit(*str_pos))
-		return (0);
 	while (ft_isdigit(*str_pos))
 	{
-		if (!ft_isdigit(*str_pos))
-			return (0);
 		digit_value = *str_pos - '0';
 		if (sign == 1 && int_value > ((max_limit - digit_value) / 10))
 			return (0);
@@ -37,27 +44,36 @@ int	is_int_str(char *str_pos, int sign)
 	return (1);
 }
 
-int	is_int_number_strs(char **stack_strs, size_t stack_size)
+int	is_int_str(char *str)
 {
-	int		sign;
-	size_t	i;
 	size_t	j;
+	int		sign;
 
 	sign = 1;
-	i = 0;
-	while (i < stack_size)
+	j = 0;
+	while (str[j] == ' ' || (str[j] >= '\t' && str[j] <= '\r'))
+		j++;
+	if (str[j] == '-' || str[j] == '+')
 	{
-		j = 0;
-		while (stack_strs[i][j] == ' ' || (stack_strs[i][j] >= '\t'
-				&& stack_strs[i][j] <= '\r'))
-			j++;
-		if (stack_strs[i][j] == '-' || stack_strs[i][j] == '+')
-		{
-			if (stack_strs[i][j] == '-')
-				sign = -1;
-			j++;
-		}
-		if (!is_int_str(&(stack_strs[i][j]), sign))
+		if (str[j] == '-')
+			sign = -1;
+		j++;
+	}
+	if (!is_all_digit_char(&(str[j])))
+		return (0);
+	if (!is_int_range(&(str[j]), sign))
+		return (0);
+	return (1);
+}
+
+int	is_all_int_str(char **arg_strs, size_t arg_size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < arg_size)
+	{
+		if (!is_int_str(arg_strs[i]))
 			return (0);
 		i++;
 	}
