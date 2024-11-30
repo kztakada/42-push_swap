@@ -6,7 +6,7 @@
 #    By: katakada <katakada@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 17:58:09 by katakada          #+#    #+#              #
-#    Updated: 2024/11/16 01:11:23 by katakada         ###   ########.fr        #
+#    Updated: 2024/11/30 19:53:51 by katakada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,9 @@ SRCS_PATH		=	src/
 SRCS_BONUS_PATH	=	src/bonus/
 SRCS			=	src/custom_operations.c \
 					src/error_and_free.c \
-					src/get_init_stack_funcs.c \
-					src/get_init_stack.c \
+					src/init_stack_get_arg_number_strs.c \
+					src/init_stack_funcs.c \
+					src/init_stack.c \
 					src/operations_funcs.c \
 					src/operations_push.c \
 					src/operations_reverse_rotate.c \

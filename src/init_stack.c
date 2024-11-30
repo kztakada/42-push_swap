@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_init_stack.c                                   :+:      :+:    :+:   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 18:38:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/30 17:05:50 by katakada         ###   ########.fr       */
+/*   Created: 2024/11/30 19:49:50 by katakada          #+#    #+#             */
+/*   Updated: 2024/11/30 19:54:44 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,53 +50,32 @@ void	convert_push_to_stack_a(t_stack *stack, char **arg_strs)
 	}
 }
 
-void	convert_space(unsigned int index, char *character)
+int	get_arg_numbers_size(char **arg_strs)
 {
-	(void)index;
-	if ((*character >= '\t' && *character <= '\r'))
-		*character = ' ';
-}
+	int	i;
 
-char	**get_arg_strs_and_size(int argc, char **argv, size_t *stack_size)
-{
-	char	**arg_strs;
-
-	arg_strs = NULL;
-	if (argc == 2)
-	{
-		ft_striteri(argv[1], &convert_space);
-		arg_strs = ft_split(argv[1], ' ');
-		if (!arg_strs)
-			return (NULL);
-		while (arg_strs[(*stack_size)])
-			(*stack_size)++;
-	}
-	else
-	{
-		arg_strs = argv + 1;
-		(*stack_size) = argc - 1;
-	}
-	return (arg_strs);
+	i = 0;
+	while (arg_strs[i])
+		i++;
+	return (i);
 }
 
 t_stack	*get_validated_stack(int argc, char **argv)
 {
 	t_stack	*stack;
-	size_t	stack_size;
-	char	**arg_strs;
+	size_t	arg_numbers_size;
+	char	**arg_number_strs;
 
-	stack_size = 0;
-	arg_strs = get_arg_strs_and_size(argc, argv, &stack_size);
-	if (!arg_strs)
+	arg_number_strs = get_arg_number_strs(argc, argv);
+	if (!arg_number_strs)
 		return (NULL);
-	if (!is_all_int_str(arg_strs, stack_size))
-		return (free_strs(arg_strs, stack_size, argc), NULL);
-	stack = get_init_stack(stack_size);
+	arg_numbers_size = get_arg_numbers_size(arg_number_strs);
+	stack = get_init_stack(arg_numbers_size);
 	if (!stack)
-		return (free_strs(arg_strs, stack_size, argc), NULL);
-	convert_push_to_stack_a(stack, arg_strs);
+		return (free_strs(arg_number_strs), NULL);
+	convert_push_to_stack_a(stack, arg_number_strs);
 	if (has_duplication(stack->a, stack->a_size))
-		return (free_stack(stack), free_strs(arg_strs, stack_size, argc), NULL);
-	free_strs(arg_strs, stack_size, argc);
+		return (free_stack(stack), free_strs(arg_number_strs), NULL);
+	free_strs(arg_number_strs);
 	return (stack);
 }

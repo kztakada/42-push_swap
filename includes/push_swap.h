@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 22:58:42 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/30 17:09:07 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:55:12 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct s_min_op
 }			t_min_op;
 
 t_stack		*get_validated_stack(int argc, char **argv);
-int			is_all_int_str(char **arg_strs, size_t arg_size);
+char		**get_arg_number_strs(int argc, char **argv);
+int			is_all_int_str(char **arg_strs);
 int			has_duplication(int *stack, size_t stack_size);
 
 int			sort_three(t_stack *stack, t_list **operations);
@@ -94,6 +95,6 @@ int			is_a_side_sorted(t_stack *stack, size_t stack_size);
 
 void		error_exit(void);
 void		free_stack(t_stack *stack);
-void		free_strs(char **strs, size_t stack_size, int argc);
+void		free_strs(char **strs);
 
 #endif

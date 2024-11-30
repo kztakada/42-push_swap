@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 17:50:48 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/11 17:02:26 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:37:26 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-void	free_strs(char **strs, size_t stack_size, int argc)
+void	free_strs(char **strs)
 {
 	size_t	i;
 
 	i = 0;
-	if (argc > 2)
-		return ;
-	while (i < stack_size)
+	while (strs[i])
 	{
 		free(strs[i]);
 		i++;

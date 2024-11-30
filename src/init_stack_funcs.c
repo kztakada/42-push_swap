@@ -6,7 +6,7 @@
 /*   By: katakada <katakada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:55:19 by katakada          #+#    #+#             */
-/*   Updated: 2024/11/30 17:50:18 by katakada         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:34:23 by katakada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ int	is_int_str(char *str)
 	return (1);
 }
 
-int	is_all_int_str(char **arg_strs, size_t arg_size)
+int	is_all_int_str(char **arg_strs)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < arg_size)
+	while (arg_strs[i])
 	{
 		if (!is_int_str(arg_strs[i]))
 			return (0);
